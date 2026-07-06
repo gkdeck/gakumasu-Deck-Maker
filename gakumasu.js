@@ -426,7 +426,7 @@ const cardData = [
     { id: "6113-052", name: "寒空リサイタル", type: "アノマリー", img:"spc_an007.png"},
     { id: "6803-053", name: "せーのでぱくっ！", type: "アノマリー", img:"spc_an008.png"},
     { id: "6903-054", name: "ガタゴトすやすや", type: "アノマリー", img:"spc_an009.png" },
-    { id: "6103-055", name: "あつあつはふはふ", type: "アノマリー", img:"spc_an010.png" }
+    { id: "6103-055", name: "あつあつはふはふ", type: "アノマリー", img:"spc_an010.png" },
 ];
 
 // 画面要素の取得

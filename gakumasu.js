@@ -231,6 +231,7 @@ const cardData = [
     { id: "5203-003", name: "絶対負けない", type: "センス", img:"咲季_se003.png" },
     { id: "5203-004", name: "ちょちょいのちょい", type: "センス", img:"咲季_se004.png" },
     { id: "5203-005", name: "これまでもこれからも", type: "センス", img:"咲季_se005.png" },
+    { id: "5203-006", name: "伝説への挑戦", type: "センス", img:"咲季_se006.png" },
     { id: "5101-006", name: "意地っ張り", type: "センス", img:"手毬_se001.png" },
     { id: "5102-007", name: "ローン・ウルフ", type: "センス", img:"手毬_se002.png" },
     { id: "5103-008", name: "それぞれの道", type: "センス", img:"手毬_se003.png" },
@@ -246,6 +247,7 @@ const cardData = [
     { id: "5203-018", name: "盛装の華形", type: "センス", img:"麻央_se003.png" },
     { id: "5103-019", name: "ひんやり一休み", type: "センス", img:"麻央_se004.png" },
     { id: "5103-020", name: "見つけた世界で", type: "センス", img:"麻央_se005.png" },
+    { id: "5203-021", name: "奪われる心", type: "センス", img:"麻央_se006.png" },
     { id: "5201-021", name: "初めての地平", type: "センス", img:"リーリヤ_se001.png" },
     { id: "5203-022", name: "はじめてのラムネ", type: "センス", img:"リーリヤ_se002.png" },
     { id: "5103-023", name: "いつか見た景色", type: "センス", img:"リーリヤ_se003.png" },
@@ -343,6 +345,7 @@ const cardData = [
     { id: "5203-115", name: "おてつき注意！", type: "アノマリー", img:"手毬_an001.png" },
     { id: "5103-116", name: "置き去りな自分", type: "アノマリー", img:"手毬_an002.png" },
     { id: "5203-117", name: "あたらしい光", type: "アノマリー", img:"ことね_an001.png" },
+    { id: "5103-118", name: "弱気じゃいられない！", type: "アノマリー", img:"ことね_an002.png" },
     { id: "5201-118", name: "プライドの塊", type: "アノマリー", img:"燕_an001.png" },
     { id: "5103-119", name: "頬張る3色", type: "アノマリー", img:"麻央_an001.png" },
     { id: "5203-120", name: "手にした答え", type: "アノマリー", img:"麻央_an002.png" },
@@ -368,6 +371,7 @@ const cardData = [
     { id: "5203-140", name: "グーチョキパーデポン", type: "アノマリー", img:"佑芽_an002.png" },
     { id: "5103-141", name: "アイドルにしてくれた", type: "アノマリー", img:"莉波_an001.png" },
     { id: "5203-142", name: "受け取ってくれる？", type: "アノマリー", img:"莉波_an002.png" },
+    { id: "5903-143", name: "甘く溶ける心", type: "アノマリー", img:"莉波_an003.png" },
     { id: "6012-001", name: "お姉ちゃんだもの！", type: "共通", img:"spc_fr001.png" },
     { id: "6012-002", name: "おアツイ視線", type: "共通", img:"spc_fr002.png" },
     { id: "6012-003", name: "ご指導ご鞭撻", type: "共通", img:"spc_fr003.png" },
@@ -420,8 +424,9 @@ const cardData = [
     { id: "6103-050", name: "対戦お願いします！", type: "アノマリー", img:"spc_an005.png"},
     { id: "6303-051", name: "いたずらサンタさん", type: "アノマリー", img:"spc_an006.png"},
     { id: "6113-052", name: "寒空リサイタル", type: "アノマリー", img:"spc_an007.png"},
-    { id: "6813-053", name: "せーのでぱくっ！", type: "アノマリー", img:"spc_an008.png"},
-    { id: "6913-054", name: "ガタゴトすやすや", type: "アノマリー", img:"spc_an009.png" },
+    { id: "6803-053", name: "せーのでぱくっ！", type: "アノマリー", img:"spc_an008.png"},
+    { id: "6903-054", name: "ガタゴトすやすや", type: "アノマリー", img:"spc_an009.png" },
+    { id: "6103-055", name: "あつあつはふはふ", type: "アノマリー", img:"spc_an010.png" }
 ];
 
 // 画面要素の取得

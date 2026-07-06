@@ -415,13 +415,13 @@ const cardData = [
     { id: "6203-045", name: "お手並み拝見", type: "ロジック", img:"spc_lo017.png" },
     { id: "6102-046", name: "愛情レインボー", type: "アノマリー", img:"spc_an001.png"},
     { id: "6602-047", name: "小さなお客さん", type: "アノマリー", img:"spc_an002.png"},
-    { id: "6602-048", name: "雨宿りのバス停", type: "アノマリー", img:"spc_an003.png"},
-    { id: "6412-049", name: "バレンタイン大作戦！", type: "アノマリー", img:"spc_an004.png"},
-    { id: "6102-050", name: "対戦お願いします！", type: "アノマリー", img:"spc_an005.png"},
-    { id: "6302-051", name: "いたずらサンタさん", type: "アノマリー", img:"spc_an006.png"},
-    { id: "6112-052", name: "寒空リサイタル", type: "アノマリー", img:"spc_an007.png"},
-    { id: "6812-053", name: "せーのでぱくっ！", type: "アノマリー", img:"spc_an008.png"},
-    { id: "6912-054", name: "ガタゴトすやすや", type: "アノマリー", img:"spc_an009.png" }
+    { id: "6603-048", name: "雨宿りのバス停", type: "アノマリー", img:"spc_an003.png"},
+    { id: "6413-049", name: "バレンタイン大作戦！", type: "アノマリー", img:"spc_an004.png"},
+    { id: "6103-050", name: "対戦お願いします！", type: "アノマリー", img:"spc_an005.png"},
+    { id: "6303-051", name: "いたずらサンタさん", type: "アノマリー", img:"spc_an006.png"},
+    { id: "6113-052", name: "寒空リサイタル", type: "アノマリー", img:"spc_an007.png"},
+    { id: "6813-053", name: "せーのでぱくっ！", type: "アノマリー", img:"spc_an008.png"},
+    { id: "6913-054", name: "ガタゴトすやすや", type: "アノマリー", img:"spc_an009.png" }
 ];
 
 // 画面要素の取得

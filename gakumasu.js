@@ -559,7 +559,9 @@ function filterCards() {
         const cardCategory = categoryMap[typeCode] || '共通';
         const cardEffectiveType = card.type || cardCategory;
 
-       if (searchTxt &&!card.name.toLowerCase().includes(searchTxt) &&!(card.idol && card.idol.toLowerCase().includes(searchTxt))) {
+const hitIdol = card.idol && (Array.isArray(card.idol) ? card.idol.some(name => name.includes(searchTxt)) : card.idol.includes(searchTxt));
+
+if (searchTxt && card.name.includes(searchTxt) && !hitIdol) {
     return false;
 }
         

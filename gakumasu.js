@@ -535,7 +535,7 @@ function filterCards() {
     const genkiEl = document.getElementById('filter-genki');
     const sortEl = document.getElementById('filter-sort');
     
-    const searchTxt = searchEl ? searchEl.value.toLowerCase() : '';
+    const searchTxt = searchEl ? searchEl.value.trim().toLowerCase() : '';
     const typeVal = typeEl ? typeEl.value : 'all'; 
     const enhanceVal = enhanceEl ? enhanceEl.value : 'all';
     const requireGenki = genkiEl ? genkiEl.checked : false;
@@ -559,25 +559,33 @@ function filterCards() {
         const cardCategory = categoryMap[typeCode] || '共通';
         const cardEffectiveType = card.type || cardCategory;
 
-const keyword = searchTxt.trim().toLowerCase();
+const hitName = card.name.toLowerCase().includes(searchTxt);
 
-const hitName =
-    card.name &&
-    card.name.toLowerCase().includes(keyword);
+let hitIdol = false;
 
-const hitIdol =
-    card.idol &&
-    (
-        Array.isArray(card.idol)
-            ? card.idol.some(name => name.toLowerCase().includes(keyword))
-            : card.idol.toLowerCase().includes(keyword)
-    );
+if (card.idol) {
+    if (Array.isArray(card.idol)) {
+        hitIdol = card.idol.some(name =>
+            name.toLowerCase().includes(searchTxt)
+        );
+    } else {
+        hitIdol = card.idol.toLowerCase().includes(searchTxt);
+    }
+}
 
-if (keyword !== "" && !(hitName || hitIdol)) {
+if (searchTxt && !hitName && !hitIdol) {
     return false;
 }
-        
-        if (requireGenki && genkiCode !== '1') return false;
+
+if (typeVal !== 'all') {
+    const typeValMap = categoryMap[typeVal] || typeVal;
+
+    if (typeValMap !== cardCategory && typeValMap !== cardEffectiveType) {
+        return false;
+    }
+}
+
+if (requireGenki && genkiCode !== '1') return false;
 
         if (checkedPlans.length > 0) {
             let cardAttributes = [];

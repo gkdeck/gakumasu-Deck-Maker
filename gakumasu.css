@@ -1,3 +1,18 @@
+/* =========================================
+   横スクロールバーを完全に封じるCSS
+   ========================================= */
+html, body {
+    overflow-x: hidden !important;
+    width: 100% !important;
+    position: relative !important;
+}
+
+/* さらに、カードを表示している親要素に対しても横はみ出しを禁止 */
+#card-pool, #deck-list, .container, .main-content {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+}
+
 body {
     margin: 0;
     font-family: 'Helvetica Neue', Arial, sans-serif;

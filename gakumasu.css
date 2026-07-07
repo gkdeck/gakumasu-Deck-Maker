@@ -280,240 +280,116 @@ body {
 }
 
 /* =========================================
-   ✨ 絞り込みエリア（文字潰れ解消・pnote風）
+   🔥 緊急修正：PC・スマホ両対応の絶対崩れないレイアウト
    ========================================= */
-.filter-section {
-    background-color: #1e1e24 !important; /* スタイリッシュなダーク背景 */
-    padding: 15px !important;
-    border-radius: 12px !important;
-    margin-bottom: 20px !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
-}
 
-/* 中身の配置ルール（絶対に横に潰させない） */
-.filter-controls {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    gap: 10px !important;
-    align-items: center !important;
-}
-
-/* --- 各パーツのサイズと順番 --- */
-
-/* ① 絞り込みプルダウン（上段に2つ並べる） */
-.filter-select {
-    order: 1 !important;
-    width: calc(50% - 5px) !important; /* 2つでピッタリ100%になる計算 */
-}
-
-/* ② 表示順のプルダウン（中段に1つ大きく） */
-#filter-sort {
-    order: 2 !important;
-    width: 100% !important;
-}
-
-/* ③ 検索バー（下段に丸く） */
-.filter-input-large {
-    order: 3 !important;
-    width: 100% !important;
-    background-color: transparent !important;
-    border: 1.5px solid #6b6b75 !important;
-    color: #ffffff !important;
-    border-radius: 50px !important;
-    padding: 12px 16px !important;
-    font-size: 14px !important;
+/* --- 1. 諸悪の根源である「横スクロール（ピンク線）」と「はみ出し」を全画面で完全封殺 --- */
+html, body, .container, #card-pool, #deck-list, .filter-controls {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
     box-sizing: border-box !important;
 }
 
-/* 検索バーの文字色 */
-.filter-input-large::placeholder {
-    color: #909099 !important;
+/* --- 2. 絞り込みエリア（PCの文字縦潰れ＆スマホのレイアウト崩れ修正） --- */
+.filter-section {
+    background-color: #ffffff !important;
+    padding: 15px !important;
+    border-radius: 12px !important;
+    border: 1px solid #e2e8f0 !important;
+    margin-bottom: 20px !important;
 }
 
-/* ④ チェックボックス（一番下） */
-.plan-checkboxes {
-    order: 4 !important;
+.filter-controls {
+    display: flex !important;
+    flex-wrap: wrap !important; /* PCで画面を縮めた時に絶対に潰れず「下へ折り返す」ようにする */
+    gap: 10px !important;
+    align-items: center !important;
     width: 100% !important;
-    color: #ffffff !important;
+}
+
+/* ① 絞り込みプルダウン（上段に2つ並べる） */
+.filter-select {
+    width: calc(50% - 5px) !important;
+    order: 1 !important;
+}
+
+/* ② 表示（ソート）プルダウン（中段） */
+#filter-sort {
+    width: 100% !important;
+    order: 2 !important;
+}
+
+/* ③ 検索バー（下段） */
+.filter-input-large {
+    width: 100% !important;
+    order: 3 !important;
+    padding: 12px !important;
+    border-radius: 50px !important;
+    border: 1.5px solid #cbd5e1 !important;
+    box-sizing: border-box !important;
+    background-color: #ffffff !important;
+    color: #333333 !important;
+}
+
+/* ④ 元気付与チェックボックス（文字消え・縦並びバグを完全に修正） */
+.filter-controls label,
+.plan-checkboxes {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    width: 100% !important; /* 確実に横幅100%を確保して潰させない */
     font-size: 14px !important;
+    color: #333333 !important;
+    white-space: nowrap !important; 
+    overflow: visible !important; /* 文字が消えるのを絶対に防ぐ */
+    order: 4 !important;
     margin-top: 5px !important;
 }
 
-/* --- プルダウン共通の見た目（ダサい矢印を消す） --- */
+/* プルダウンの共通デザイン（白ベース） */
 .filter-select,
 #filter-sort,
 .filter-controls select {
     appearance: none !important;
     -webkit-appearance: none !important;
-    background-color: #3b3b44 !important;
-    border: 1px solid #4a4a55 !important;
-    color: #e0e0e0 !important;
+    background-color: #f1f3f5 !important;
+    border: 1px solid #e2e8f0 !important;
+    color: #333333 !important;
     border-radius: 8px !important;
-    padding: 10px 25px 10px 10px !important; /* 右側に矢印用の余白 */
-    font-size: 13px !important; /* スマホで見やすいサイズ */
-    box-sizing: border-box !important;
-    
-    /* カスタムのスマートな矢印 */
-    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L5 5L9 1" stroke="%23A0A0A5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>') !important;
+    padding: 10px 30px 10px 10px !important;
+    font-size: 13px !important;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L5 5L9 1" stroke="%23333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>') !important;
     background-repeat: no-repeat !important;
     background-position: right 10px center !important;
-    
-    /* 絶対に文字を改行させない・はみ出させない */
+}
+
+/* --- 3. カードリストの並び（PC・スマホ両対応の自動調整グリッド） --- */
+/* PC版：画面幅に合わせて自動で敷き詰め、はみ出し（ピンク線）を防ぐ */
+#card-pool, #deck-list {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)) !important;
+    gap: 8px !important;
+    width: 100% !important;
+    padding: 5px !important;
+}
+
+/* スマホ版（768px以下）：強制的に「3列」に固定して列乱れを防ぐ */
+@media screen and (max-width: 768px) {
+    #card-pool, #deck-list {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+}
+
+/* カード内の文字のはみ出し・潰れ防止 */
+.card-item {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+}
+.card-item p {
     white-space: nowrap !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
-}
-
-/* =========================================
-   🌐 全体・PC版のバグ修正（文字縦潰れ＆ピンク線対策）
-   ========================================= */
-
-/* チェックボックスの文字が縦に伸びるのを絶対に防ぐ */
-.plan-checkboxes, 
-.plan-checkboxes label {
-    white-space: nowrap !important;
-}
-
-/* 画面幅を縮めたときに要素が横にはみ出すのを防ぐ */
-#card-pool, 
-#deck-list {
-    max-width: 100% !important;
-    box-sizing: border-box !important;
-}
-
-/* =========================================
-   📱 スマホ・タブレット対応（境界を1024pxに広げて綺麗に移行）
-   ========================================= */
-@media screen and (max-width: 1024px) {
-    
-    /* スマホ版で画面全体やエリアが左右にガタガタ動く（横揺れ）のを完全に禁止 */
-    html, body {
-        overflow-x: hidden !important;
-    }
-
-    /* --- 1. 絞り込みエリア（白ベースでシンプル＆スタイリッシュ） --- */
-    .filter-section {
-        background-color: #ffffff !important; /* 白ベースに変更 */
-        padding: 15px !important;
-        border-radius: 16px !important;
-        margin-bottom: 20px !important;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06) !important; /* 優しい影 */
-        border: 1px solid #e2e8f0 !important;
-    }
-
-    .filter-controls {
-        display: flex !important;
-        flex-wrap: wrap !important;
-        gap: 10px !important;
-        align-items: center !important;
-        max-width: 100% !important;
-        overflow-x: hidden !important;
-    }
-
-    /* ① 絞り込みプルダウン（上段に2つ並べる） */
-    .filter-select {
-        order: 1 !important;
-        width: calc(50% - 5px) !important;
-    }
-
-    /* ② 表示順のプルダウン（中段に1つ大きく） */
-    #filter-sort {
-        order: 2 !important;
-        width: 100% !important;
-    }
-
-    /* ③ 検索バー（下段に丸く・白ベース） */
-    .filter-input-large {
-        order: 3 !important;
-        width: 100% !important;
-        background-color: #ffffff !important;
-        border: 1.5px solid #cbd5e1 !important;
-        color: #333333 !important;
-        border-radius: 50px !important;
-        padding: 12px 16px !important;
-        font-size: 14px !important;
-        box-sizing: border-box !important;
-        outline: none !important;
-    }
-    .filter-input-large::placeholder {
-        color: #94a3b8 !important;
-    }
-    .filter-input-large:focus {
-        border-color: #ff4a80 !important; /* クリック時に学マスっぽいピンクに */
-    }
-
-    /* ④ チェックボックス（一番下・文字を黒に） */
-    .plan-checkboxes {
-        order: 4 !important;
-        width: 100% !important;
-        color: #333333 !important;
-        font-size: 14px !important;
-        margin-top: 5px !important;
-    }
-
-    /* プルダウン共通の見た目（白ベース・スマートな黒矢印に変更） */
-    .filter-select,
-    #filter-sort,
-    .filter-controls select {
-        appearance: none !important;
-        -webkit-appearance: none !important;
-        background-color: #f1f3f5 !important; /* 薄いグレーのボタン */
-        border: 1px solid #e2e8f0 !important;
-        color: #333333 !important;
-        border-radius: 12px !important;
-        padding: 10px 30px 10px 12px !important;
-        font-size: 13px !important;
-        font-weight: bold !important;
-        box-sizing: border-box !important;
-        
-        /* 黒系の細いスマートな矢印に変更 */
-        background-image: url('data:image/svg+xml;charset=US-ASCII,<svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L5 5L9 1" stroke="%23333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>') !important;
-        background-repeat: no-repeat !important;
-        background-position: right 12px center !important;
-        
-        white-space: nowrap !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
-    }
-
-    /* --- 2. カード選択エリア（横揺れ・ガタつきを完全防止） --- */
-    #card-pool {
-        display: grid !important;
-        grid-template-columns: repeat(3, 1fr) !important; 
-        gap: 8px !important;
-        padding: 5px !important;
-        max-width: 100% !important;
-        overflow-x: hidden !important; /* 横スクロールを絶対に発生させない */
-    }
-
-    .card-item {
-        width: 100% !important;
-        max-width: none !important;
-        box-sizing: border-box !important;
-    }
-
-    .card-item img {
-        height: auto !important;
-        aspect-ratio: 1 / 1 !important;
-    }
-
-    .card-item p {
-        font-size: 11px !important;
-        margin: 4px 0 !important;
-        white-space: nowrap !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
-    }
-
-    /* --- 3. 編成デッキエリア --- */
-    #deck-list {
-        display: grid !important;
-        grid-template-columns: repeat(3, 1fr) !important;
-        gap: 8px !important;
-        max-height: 240px !important;
-        overflow-y: auto !important;
-        overflow-x: hidden !important;
-        border-bottom: 2px dashed #ddd !important;
-        padding-bottom: 10px !important;
-    }
+    font-size: 11px !important;
+    margin: 4px 0 !important;
 }

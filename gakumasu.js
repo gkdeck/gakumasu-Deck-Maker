@@ -559,6 +559,9 @@ function filterCards() {
         const cardCategory = categoryMap[typeCode] || '共通';
         const cardEffectiveType = card.type || cardCategory;
 
+        console.log(card.name);
+console.log(typeVal, cardCategory);
+
 const hitName = card.name.toLowerCase().includes(searchTxt);
 
 let hitIdol = false;
@@ -642,7 +645,6 @@ if (requireGenki && genkiCode !== '1') return false;
         // レアリティが同じ場合は、ID順（タイプ → プラン）で綺麗に並べ替える
         return a.id.localeCompare(b.id);
     });
-    // 💡 === ここまで === 💡
 
     renderCardPool(filtered);
 }

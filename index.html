@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="apple-touch-icon" href="icon.png">
-<link rel="icon" type="image/png" href="icon.png">
+    <link rel="icon" type="image/png" href="icon.png">
     <title>学マス デッキシミュレーター</title>
+
     <style>
         @import url('gakumasu.css');
     </style>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
@@ -23,7 +25,7 @@
                 <h3>デッキを作成しよう！</h3>
                 <button id="btn-create-center" class="btn-create-center">デッキを作成する</button>
             </div>
-            
+
             <div id="home-deck-grid" class="home-deck-grid"></div>
         </main>
 
@@ -31,6 +33,7 @@
     </div>
 
     <div id="editor-view" style="display: none;">
+
         <header class="app-header">
             <button id="btn-back" class="btn btn-secondary">← 戻る</button>
             <div class="header-logo" id="editor-title">最終所持スキルカード</div>
@@ -38,78 +41,92 @@
         </header>
 
         <div class="main-container">
+
             <section class="deck-list-section">
                 <div class="deck-header">
                     <h2>編成カード (<span id="deck-count">0</span>)</h2>
+
                     <div class="deck-actions">
                         <button id="btn-save" class="btn btn-primary">保存</button>
                         <button id="btn-clear" class="btn btn-danger">全消去</button>
                     </div>
                 </div>
+
                 <hr class="section-divider">
+
                 <div id="deck-list" class="card-grid"></div>
             </section>
-            
-<div id="filter-section" class="filter-section">
-   <div class="filter-controls">
-    <input type="text" id="filter-search" class="filter-input-large" placeholder="カード名で検索...">
-    
-    <label style="margin-left: 10px; display: flex; align-items: center; gap: 5px; font-weight: bold;">
-        <input type="checkbox" id="filter-genki"> 元気付与あり
-    </label>
-    
-    <select id="filter-type" class="filter-select">
-        <option value="all">すべてのタイプ</option>
-        <option value="1">共通</option>
-        <option value="2">センス</option>
-        <option value="3">ロジック</option>
-        <option value="4">アノマリー</option>
-        <option value="5">アイドル固有</option>
-        <option value="6">サポート固有</option>
-    </select>
 
-    <select id="filter-enhance" class="filter-select">
-        <option value="all">強化状態（すべて）</option>
-        <option value="0">未強化</option>
-        <option value="1">強化済み</option>
-    </select>
+            <div id="filter-section" class="filter-section">
 
-    <select id="filter-sort" onchange="filterCards()">
-    <option value="standard">表示 </option>
-    <option value="rarity-desc">レアリティ降順（高→低）</option>
-    <option value="rarity-asc">レアリティ昇順（低→高）</option>
-</select>
+                <div class="filter-controls">
 
-</div>
-    <div id="plan-checkboxes-container" class="plan-checkboxes"></div>
-</div>
+                    <input
+                        type="text"
+                        id="filter-search"
+                        class="filter-input-large"
+                        placeholder="カード名で検索..."
+                    >
 
-<section class="card-pool-section">
-    <div id="card-pool" class="card-grid"></div>
-</section>
+                    <label style="margin-left:10px;display:flex;align-items:center;gap:5px;font-weight:bold;">
+                        <input type="checkbox" id="filter-genki">
+                        元気付与あり
+                    </label>
+
+                    <select id="filter-type" class="filter-select">
+                        <option value="all">すべてのタイプ</option>
+                        <option value="1">共通</option>
+                        <option value="2">センス</option>
+                        <option value="3">ロジック</option>
+                        <option value="4">アノマリー</option>
+                        <option value="5">アイドル固有</option>
+                        <option value="6">サポート固有</option>
+                    </select>
+
+                    <select id="filter-enhance" class="filter-select">
+                        <option value="all">強化状態（すべて）</option>
+                        <option value="0">未強化</option>
+                        <option value="1">強化済み</option>
+                    </select>
+
+                    <select id="filter-sort" onchange="filterCards()">
+                        <option value="standard">表示</option>
+                        <option value="rarity-desc">レアリティ降順（高→低）</option>
+                        <option value="rarity-asc">レアリティ昇順（低→高）</option>
+                    </select>
+
+                </div>
+
+                <div id="plan-checkboxes-container" class="plan-checkboxes"></div>
+
+            </div>
+
+            <section class="card-pool-section">
+                <div id="card-pool" class="card-grid"></div>
+            </section>
+
+        </div>
+    </div>
+
+    <div id="save-preview-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:1000; justify-content:center; align-items:center; flex-direction:column;">
+
+        <div id="preview-content" style="background:white; padding:20px; border-radius:15px; max-width:90%; max-height:70%; overflow:auto;"></div>
+
+        <div style="margin-top:20px; display:flex; gap:10px;">
+            <button id="btn-do-save" class="btn btn-primary">画像を保存</button>
+            <button id="btn-close-preview" class="btn btn-secondary">閉じる</button>
+        </div>
+
+    </div>
+
+    <footer class="site-footer">
+        <p><strong>このサイトについて</strong></p>
+        <p>当サイトはアプリゲーム「学園アイドルマスター」の非公式ファンサイトです。</p>
+        <p>当サイトで使用している画像、文章その他の著作物の著作権およびその他の権利は、株式会社バンダイナムコエンターテインメントおよび各権利者に帰属します。</p>
+        <p>当サイトは株式会社バンダイナムコエンターテインメントおよび関係各社とは一切関係ありません。</p>
+    </footer>
 
     <script src="gakumasu.js"></script>
-    
-    <section class="card-pool-section">
-    <div id="card-pool" class="card-grid"></div>
-</section>
-
-</div> </div> <script src="gakumasu.js"></script>
-    
-<div id="save-preview-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:1000; justify-content:center; align-items:center; flex-direction:column;">
-    <div id="preview-content" style="background:white; padding:20px; border-radius:15px; max-width:90%; max-height:70%; overflow:auto;"></div>
-    <div style="margin-top:20px; display:flex; gap:10px;">
-        <button id="btn-do-save" class="btn btn-primary">画像を保存</button>
-        <button id="btn-close-preview" class="btn btn-secondary">閉じる</button>
-    </div>
-</div>
-
-<footer class="site-footer">
-    <p><strong>このサイトについて</strong></p>
-    <p>当サイトはアプリゲーム「学園アイドルマスター」の非公式ファンサイトです。</p>
-    <p>当サイトで使用している画像、文章その他の著作物の著作権およびその他の権利は、株式会社バンダイナムコエンターテインメントおよび各権利者に帰属します。</p>
-    <p>当サイトは株式会社バンダイナムコエンターテインメントおよび関係各社とは一切関係ありません。</p>
-</footer>
 
 </body>
 </html>

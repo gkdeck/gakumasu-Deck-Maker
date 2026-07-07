@@ -559,21 +559,21 @@ function filterCards() {
         const cardCategory = categoryMap[typeCode] || '共通';
         const cardEffectiveType = card.type || cardCategory;
 
-const hitName = card.name.toLowerCase().includes(searchTxt);
+const keyword = searchTxt.trim().toLowerCase();
 
-let hitIdol = false;
+const hitName =
+    card.name &&
+    card.name.toLowerCase().includes(keyword);
 
-if (card.idol) {
-    if (Array.isArray(card.idol)) {
-        hitIdol = card.idol.some(name =>
-            name.toLowerCase().includes(searchTxt)
-        );
-    } else {
-        hitIdol = card.idol.toLowerCase().includes(searchTxt);
-    }
-}
+const hitIdol =
+    card.idol &&
+    (
+        Array.isArray(card.idol)
+            ? card.idol.some(name => name.toLowerCase().includes(keyword))
+            : card.idol.toLowerCase().includes(keyword)
+    );
 
-if (searchTxt && !hitName && !hitIdol) {
+if (keyword !== "" && !(hitName || hitIdol)) {
     return false;
 }
         

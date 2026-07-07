@@ -279,68 +279,89 @@ body {
     margin-bottom: 0;
 }
 
-/* プルダウンをpnoteの「タグ風ボタン」にする */
-.filter-select,
-.filter-controls select,
+/* =========================================
+   ✨ 絞り込みエリア（文字潰れ解消・pnote風）
+   ========================================= */
+.filter-section {
+    background-color: #1e1e24 !important; /* スタイリッシュなダーク背景 */
+    padding: 15px !important;
+    border-radius: 12px !important;
+    margin-bottom: 20px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* 中身の配置ルール（絶対に横に潰させない） */
+.filter-controls {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+    align-items: center !important;
+}
+
+/* --- 各パーツのサイズと順番 --- */
+
+/* ① 絞り込みプルダウン（上段に2つ並べる） */
+.filter-select {
+    order: 1 !important;
+    width: calc(50% - 5px) !important; /* 2つでピッタリ100%になる計算 */
+}
+
+/* ② 表示順のプルダウン（中段に1つ大きく） */
 #filter-sort {
-    order: 1; /* 順番を上に強制 */
-    appearance: none; /* デフォルトのダサい矢印を消す */
-    -webkit-appearance: none;
-    background-color: #3b3b44; /* ボタンの背景色 */
-    border: 1px solid #4a4a55; /* ボタンの枠線 */
-    color: #e0e0e0;
-    border-radius: 12px; /* 少し丸みのある四角 */
-    padding: 10px 16px;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
-    outline: none;
-    /* 右側にオリジナルのスマートな矢印（▼）を描画 */
-    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L5 5L9 1" stroke="%23A0A0A5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
-    background-repeat: no-repeat;
-    background-position: right 14px center;
-    padding-right: 36px; /* 矢印と文字が被らないように余白 */
-    transition: background-color 0.2s;
-}
-.filter-select:hover {
-    background-color: #4a4a55;
-}
-
-/* 検索バーを角丸の「ピル型」にする */
-.filter-input-large {
-    order: 2; /* 順番を下に強制 */
+    order: 2 !important;
     width: 100% !important;
-    flex: 1 1 100%;
-    margin-top: 6px; /* 上のボタンとの隙間 */
-    background-color: transparent;
-    border: 1.5px solid #6b6b75;
-    color: #ffffff;
-    border-radius: 50px; /* 完全に丸いピル型 */
-    padding: 12px 20px;
-    font-size: 15px;
-    outline: none;
-    box-sizing: border-box;
-    transition: border-color 0.2s, background-color 0.2s;
 }
 
-/* 検索バーの「カード名で検索...」の文字色 */
+/* ③ 検索バー（下段に丸く） */
+.filter-input-large {
+    order: 3 !important;
+    width: 100% !important;
+    background-color: transparent !important;
+    border: 1.5px solid #6b6b75 !important;
+    color: #ffffff !important;
+    border-radius: 50px !important;
+    padding: 12px 16px !important;
+    font-size: 14px !important;
+    box-sizing: border-box !important;
+}
+
+/* 検索バーの文字色 */
 .filter-input-large::placeholder {
-    color: #909099;
-    font-weight: bold;
+    color: #909099 !important;
 }
 
-/* 検索バーを選択した時に枠線を白く光らせる */
-.filter-input-large:focus {
-    border-color: #ffffff;
-    background-color: rgba(255, 255, 255, 0.05);
-}
-
-/* 「元気付与あり」などのチェックボックスの文字色を白にする */
+/* ④ チェックボックス（一番下） */
 .plan-checkboxes {
-    order: 3; /* 一番下に配置 */
-    color: #ffffff;
-    width: 100%;
-    margin-top: 10px;
+    order: 4 !important;
+    width: 100% !important;
+    color: #ffffff !important;
+    font-size: 14px !important;
+    margin-top: 5px !important;
+}
+
+/* --- プルダウン共通の見た目（ダサい矢印を消す） --- */
+.filter-select,
+#filter-sort,
+.filter-controls select {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    background-color: #3b3b44 !important;
+    border: 1px solid #4a4a55 !important;
+    color: #e0e0e0 !important;
+    border-radius: 8px !important;
+    padding: 10px 25px 10px 10px !important; /* 右側に矢印用の余白 */
+    font-size: 13px !important; /* スマホで見やすいサイズ */
+    box-sizing: border-box !important;
+    
+    /* カスタムのスマートな矢印 */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L5 5L9 1" stroke="%23A0A0A5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>') !important;
+    background-repeat: no-repeat !important;
+    background-position: right 10px center !important;
+    
+    /* 絶対に文字を改行させない・はみ出させない */
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
 }
 
 /* =========================================

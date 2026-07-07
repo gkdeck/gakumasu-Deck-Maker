@@ -1,0 +1,15 @@
+{
+  "name": "初Deck",
+  "short_name": "初Deck",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#e86aa9",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "1254x1254",
+      "type": "image/png"
+    }
+  ]
+}

@@ -238,39 +238,7 @@ body {
     border-radius: 8px;
 }
 
-/* 絞り込みエリアのスタイリング */
-.filter-section {
-    background-color: #f8f9fa;
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
 
-.filter-controls {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-/* 検索バーを大きく広げる */
-.filter-input-large {
-    flex: 2; 
-    padding: 12px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-}
-
-/* プルダウンのサイズ調整 */
-.filter-select {
-    flex: 1;
-    padding: 12px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-}
 
 .plan-checkboxes {
     display: flex;
@@ -290,6 +258,89 @@ body {
 }
 .site-footer p {
     margin: 4px 0; /* 行間を少し詰める */
+}
+/* =========================================
+   ✨ 絞り込みエリア（pnote風スタイリッシュUI）
+   ========================================= */
+.filter-section {
+    background-color: #1e1e24; /* スタイリッシュなダーク背景 */
+    padding: 15px 20px;
+    border-radius: 16px;
+    margin-bottom: 20px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    color: #ffffff; /* テキストを白に */
+}
+
+/* 検索バーとボタンの配置を「ボタン上・検索下」に自動整理 */
+.filter-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 0;
+}
+
+/* プルダウンをpnoteの「タグ風ボタン」にする */
+.filter-select,
+.filter-controls select,
+#filter-sort {
+    order: 1; /* 順番を上に強制 */
+    appearance: none; /* デフォルトのダサい矢印を消す */
+    -webkit-appearance: none;
+    background-color: #3b3b44; /* ボタンの背景色 */
+    border: 1px solid #4a4a55; /* ボタンの枠線 */
+    color: #e0e0e0;
+    border-radius: 12px; /* 少し丸みのある四角 */
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    /* 右側にオリジナルのスマートな矢印（▼）を描画 */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L5 5L9 1" stroke="%23A0A0A5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px; /* 矢印と文字が被らないように余白 */
+    transition: background-color 0.2s;
+}
+.filter-select:hover {
+    background-color: #4a4a55;
+}
+
+/* 検索バーを角丸の「ピル型」にする */
+.filter-input-large {
+    order: 2; /* 順番を下に強制 */
+    width: 100% !important;
+    flex: 1 1 100%;
+    margin-top: 6px; /* 上のボタンとの隙間 */
+    background-color: transparent;
+    border: 1.5px solid #6b6b75;
+    color: #ffffff;
+    border-radius: 50px; /* 完全に丸いピル型 */
+    padding: 12px 20px;
+    font-size: 15px;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+/* 検索バーの「カード名で検索...」の文字色 */
+.filter-input-large::placeholder {
+    color: #909099;
+    font-weight: bold;
+}
+
+/* 検索バーを選択した時に枠線を白く光らせる */
+.filter-input-large:focus {
+    border-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* 「元気付与あり」などのチェックボックスの文字色を白にする */
+.plan-checkboxes {
+    order: 3; /* 一番下に配置 */
+    color: #ffffff;
+    width: 100%;
+    margin-top: 10px;
 }
 
 /* =========================================

@@ -402,34 +402,3 @@ html, body {
     }
 }
 
-/* --- 修正箇所：横スクロール封じと3列表示の最適化 --- */
-
-/* 1. ページ全体とメインコンテナの横スクロールを強制的に禁止 */
-html, body, #card-pool, #deck-list {
-    overflow-x: hidden !important;
-    width: 100% !important;
-}
-
-/* 2. スマホ版(768px以下)の表示設定をピンポイント修正 */
-@media screen and (max-width: 768px) {
-    #card-pool, #deck-list {
-        display: grid !important;
-        grid-template-columns: repeat(3, 1fr) !important;
-        gap: 4px !important;
-        padding: 5px !important;
-        box-sizing: border-box !important;
-    }
-
-    /* 黒枠を見せるためにoverflowをvisibleに */
-    .card-item {
-        overflow: visible !important;
-    }
-
-    /* 画像のサイズと表示を維持 */
-    .card-item img {
-        width: 100% !important;
-        height: auto !important;
-        object-fit: contain !important;
-        display: block !important;
-    }
-}

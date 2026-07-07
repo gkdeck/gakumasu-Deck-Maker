@@ -293,44 +293,76 @@ body {
 }
 
 /* =========================================
-   📱 スマホ対応（レスポンシブ）用の追加CSS
+   📱 スマホ対応（レスポンシブ）用の追加CSS・改
    ========================================= */
 @media screen and (max-width: 768px) {
-    /* 1. 編成エリアとカード一覧の「横7枚固定」を解除し、画面幅に合わせて自動で折り返す */
-    #deck-list, #card-pool {
-        grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-        justify-content: center; /* スマホでは中央寄せの方が見栄えが綺麗です */
+    /* --- 1. 絞り込みエリアを省スペース化（2列配置） --- */
+    .filter-controls {
+        display: flex !important;
+        flex-direction: row !important; /* 縦一列をやめて横並びを許可 */
+        flex-wrap: wrap; /* 画面端で折り返す */
+        gap: 10px;
     }
 
-    /* 2. カードの幅をスマホ画面に合わせて柔軟にする */
-    .card-item {
-        width: 100%;
-        max-width: 110px;
+    /* 検索窓とチェックボックスは横幅いっぱい（1行使う） */
+    .filter-input-large,
+    .plan-checkboxes {
+        width: 100% !important;
+        box-sizing: border-box;
     }
+
+    /* プルダウンは横幅を半分にして「2列並び」にする！ */
+    .filter-select,
+    .filter-controls select,
+    #filter-sort {
+        width: calc(50% - 5px) !important; /* 隙間の分を引いてぴったり2つ並べる */
+        height: 44px; /* 指でタップしやすい高さを確保 */
+        margin: 0;
+        box-sizing: border-box;
+        font-size: 14px !important;
+    }
+
+    /* --- 2. カードリストの隙間を詰めて一覧性をアップ --- */
+    #deck-list, #card-pool {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important; /* 確実に3枚並びに固定 */
+        gap: 8px !important; /* 隙間を小さく（元12px） */
+        padding: 5px;
+    }
+
+    .card-item {
+        width: 100% !important;
+        max-width: none !important;
+    }
+
+    /* 画像を完全な正方形に保つ */
     .card-item img {
         height: auto;
-        aspect-ratio: 1 / 1; /* 完全な正方形を維持する魔法のコード */
+        aspect-ratio: 1 / 1;
     }
 
-    /* 3. 検索バーとプルダウンを縦並びにして、指でタップしやすくする */
-    .filter-controls {
-        flex-direction: column; /* 横並びから縦並びに変更 */
-        align-items: stretch;
-    }
-    
-    .filter-input-large, .filter-select {
-        width: 100%;
-        box-sizing: border-box;
-        font-size: 16px !important; /* iPhoneで入力時に勝手にズームされるのを防ぐ */
+    /* カード名が長すぎる場合は「...」で省略してレイアウト崩れを防ぐ */
+    .card-item p {
+        font-size: 11px;
+        margin: 4px 0;
+        white-space: nowrap; /* テキストの改行を防ぐ */
+        overflow: hidden; /* はみ出た分を隠す */
+        text-overflow: ellipsis; /* 「...」を表示する */
     }
 
-    /* 4. ホーム画面のデッキリストもスマホ幅に最適化 */
+    /* --- 3. 編成デッキエリアが画面を占領しすぎないように調整 --- */
+    #deck-list {
+        max-height: 240px; /* 約2行分でストップして枠内スクロールさせる */
+        overflow-y: auto;
+        border-bottom: 2px dashed #ddd; /* 下のエリアとの区切り線を引く */
+        padding-bottom: 10px;
+    }
+
+    /* ホーム画面のデッキリスト（既存のまま） */
     .home-deck-grid {
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-        justify-content: center;
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 10px;
     }
-    
-    /* 5. プレビュー用コンテナの固定幅（600px）を解除 */
     #preview-content {
         width: 100%;
     }

@@ -851,7 +851,8 @@ bindClick('btn-save', saveDeckAction);
 // 絞り込み用イベント
 bindEvent('filter-search', 'input', filterCards);
 bindEvent('filter-enhance', 'change', filterCards);
-bindEvent('filter-genki', 'change', filterCards); // 💡 追加：元気の切り替え時に絞り込みを実行
+bindEvent('filter-genki', 'change', filterCards);
+bindEvent('filter-sort', 'change', filterCards); // 💡 追加：元気の切り替え時に絞り込みを実行
 bindEvent('filter-type', 'change', () => {
     updatePlanCheckboxes(); 
     filterCards();          

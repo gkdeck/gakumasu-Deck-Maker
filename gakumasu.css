@@ -365,77 +365,155 @@ body {
 }
 
 /* =========================================
-   📱 スマホ対応（レスポンシブ）用の追加CSS・改
+   🌐 全体・PC版のバグ修正（文字縦潰れ＆ピンク線対策）
    ========================================= */
-@media screen and (max-width: 768px) {
-    /* --- 1. 絞り込みエリアを省スペース化（2列配置） --- */
+
+/* チェックボックスの文字が縦に伸びるのを絶対に防ぐ */
+.plan-checkboxes, 
+.plan-checkboxes label {
+    white-space: nowrap !important;
+}
+
+/* 画面幅を縮めたときに要素が横にはみ出すのを防ぐ */
+#card-pool, 
+#deck-list {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* =========================================
+   📱 スマホ・タブレット対応（境界を1024pxに広げて綺麗に移行）
+   ========================================= */
+@media screen and (max-width: 1024px) {
+    
+    /* スマホ版で画面全体やエリアが左右にガタガタ動く（横揺れ）のを完全に禁止 */
+    html, body {
+        overflow-x: hidden !important;
+    }
+
+    /* --- 1. 絞り込みエリア（白ベースでシンプル＆スタイリッシュ） --- */
+    .filter-section {
+        background-color: #ffffff !important; /* 白ベースに変更 */
+        padding: 15px !important;
+        border-radius: 16px !important;
+        margin-bottom: 20px !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06) !important; /* 優しい影 */
+        border: 1px solid #e2e8f0 !important;
+    }
+
     .filter-controls {
         display: flex !important;
-        flex-direction: row !important; /* 縦一列をやめて横並びを許可 */
-        flex-wrap: wrap; /* 画面端で折り返す */
-        gap: 10px;
+        flex-wrap: wrap !important;
+        gap: 10px !important;
+        align-items: center !important;
+        max-width: 100% !important;
+        overflow-x: hidden !important;
     }
 
-    /* 検索窓とチェックボックスは横幅いっぱい（1行使う） */
-    .filter-input-large,
-    .plan-checkboxes {
-        width: 100% !important;
-        box-sizing: border-box;
+    /* ① 絞り込みプルダウン（上段に2つ並べる） */
+    .filter-select {
+        order: 1 !important;
+        width: calc(50% - 5px) !important;
     }
 
-    /* プルダウンは横幅を半分にして「2列並び」にする！ */
-    .filter-select,
-    .filter-controls select,
+    /* ② 表示順のプルダウン（中段に1つ大きく） */
     #filter-sort {
-        width: calc(50% - 5px) !important; /* 隙間の分を引いてぴったり2つ並べる */
-        height: 44px; /* 指でタップしやすい高さを確保 */
-        margin: 0;
-        box-sizing: border-box;
-        font-size: 14px !important;
+        order: 2 !important;
+        width: 100% !important;
     }
 
-    /* --- 2. カードリストの隙間を詰めて一覧性をアップ --- */
-    #deck-list, #card-pool {
+    /* ③ 検索バー（下段に丸く・白ベース） */
+    .filter-input-large {
+        order: 3 !important;
+        width: 100% !important;
+        background-color: #ffffff !important;
+        border: 1.5px solid #cbd5e1 !important;
+        color: #333333 !important;
+        border-radius: 50px !important;
+        padding: 12px 16px !important;
+        font-size: 14px !important;
+        box-sizing: border-box !important;
+        outline: none !important;
+    }
+    .filter-input-large::placeholder {
+        color: #94a3b8 !important;
+    }
+    .filter-input-large:focus {
+        border-color: #ff4a80 !important; /* クリック時に学マスっぽいピンクに */
+    }
+
+    /* ④ チェックボックス（一番下・文字を黒に） */
+    .plan-checkboxes {
+        order: 4 !important;
+        width: 100% !important;
+        color: #333333 !important;
+        font-size: 14px !important;
+        margin-top: 5px !important;
+    }
+
+    /* プルダウン共通の見た目（白ベース・スマートな黒矢印に変更） */
+    .filter-select,
+    #filter-sort,
+    .filter-controls select {
+        appearance: none !important;
+        -webkit-appearance: none !important;
+        background-color: #f1f3f5 !important; /* 薄いグレーのボタン */
+        border: 1px solid #e2e8f0 !important;
+        color: #333333 !important;
+        border-radius: 12px !important;
+        padding: 10px 30px 10px 12px !important;
+        font-size: 13px !important;
+        font-weight: bold !important;
+        box-sizing: border-box !important;
+        
+        /* 黒系の細いスマートな矢印に変更 */
+        background-image: url('data:image/svg+xml;charset=US-ASCII,<svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L5 5L9 1" stroke="%23333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>') !important;
+        background-repeat: no-repeat !important;
+        background-position: right 12px center !important;
+        
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
+
+    /* --- 2. カード選択エリア（横揺れ・ガタつきを完全防止） --- */
+    #card-pool {
         display: grid !important;
-        grid-template-columns: repeat(3, 1fr) !important; /* 確実に3枚並びに固定 */
-        gap: 8px !important; /* 隙間を小さく（元12px） */
-        padding: 5px;
+        grid-template-columns: repeat(3, 1fr) !important; 
+        gap: 8px !important;
+        padding: 5px !important;
+        max-width: 100% !important;
+        overflow-x: hidden !important; /* 横スクロールを絶対に発生させない */
     }
 
     .card-item {
         width: 100% !important;
         max-width: none !important;
+        box-sizing: border-box !important;
     }
 
-    /* 画像を完全な正方形に保つ */
     .card-item img {
-        height: auto;
-        aspect-ratio: 1 / 1;
+        height: auto !important;
+        aspect-ratio: 1 / 1 !important;
     }
 
-    /* カード名が長すぎる場合は「...」で省略してレイアウト崩れを防ぐ */
     .card-item p {
-        font-size: 11px;
-        margin: 4px 0;
-        white-space: nowrap; /* テキストの改行を防ぐ */
-        overflow: hidden; /* はみ出た分を隠す */
-        text-overflow: ellipsis; /* 「...」を表示する */
+        font-size: 11px !important;
+        margin: 4px 0 !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
     }
 
-    /* --- 3. 編成デッキエリアが画面を占領しすぎないように調整 --- */
+    /* --- 3. 編成デッキエリア --- */
     #deck-list {
-        max-height: 240px; /* 約2行分でストップして枠内スクロールさせる */
-        overflow-y: auto;
-        border-bottom: 2px dashed #ddd; /* 下のエリアとの区切り線を引く */
-        padding-bottom: 10px;
-    }
-
-    /* ホーム画面のデッキリスト（既存のまま） */
-    .home-deck-grid {
-        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-        gap: 10px;
-    }
-    #preview-content {
-        width: 100%;
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 8px !important;
+        max-height: 240px !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        border-bottom: 2px dashed #ddd !important;
+        padding-bottom: 10px !important;
     }
 }

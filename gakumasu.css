@@ -260,30 +260,12 @@ body {
     margin: 4px 0; /* 行間を少し詰める */
 }
 /* =========================================
-   ✨ 絞り込みエリア（pnote風スタイリッシュUI）
-   ========================================= */
-.filter-section {
-    background-color: #1e1e24; /* スタイリッシュなダーク背景 */
-    padding: 15px 20px;
-    border-radius: 16px;
-    margin-bottom: 20px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-    color: #ffffff; /* テキストを白に */
-}
-
-/* 検索バーとボタンの配置を「ボタン上・検索下」に自動整理 */
-.filter-controls {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-bottom: 0;
-}
-
-/* =========================================
-   ✨ 修正版：カードリストには一切干渉しない安全なCSS
+   🔥 最終修正：完全版レイアウト（絞り込み ＋ 完璧な3列表現）
    ========================================= */
 
-/* 1. 絞り込みエリア（白ベースに綺麗に整える） */
+/* -----------------------------------------
+   1. 絞り込みエリア
+   ----------------------------------------- */
 .filter-section {
     background-color: #ffffff !important;
     padding: 16px !important;
@@ -292,20 +274,18 @@ body {
     margin-bottom: 20px !important;
 }
 
-/* 2. 絞り込みパーツの配置（PC・スマホ両方で絶対に文字を潰さない） */
 .filter-controls {
     display: flex !important;
-    flex-wrap: wrap !important; /* 画面幅に合わせて綺麗に折り返す */
+    flex-wrap: wrap !important;
     gap: 10px !important;
     align-items: center !important;
     width: 100% !important;
 }
 
-/* プルダウン共通（スマホでは2列、PCでは綺麗に横並び） */
 .filter-select,
 #filter-sort,
 .filter-controls select {
-    flex: 1 1 calc(50% - 5px) !important; /* スマホで2つ綺麗に並ぶように調整 */
+    flex: 1 1 calc(50% - 5px) !important;
     min-width: 130px !important;
     height: 42px !important;
     background-color: #f1f3f5 !important;
@@ -321,7 +301,6 @@ body {
     background-position: right 12px center !important;
 }
 
-/* 検索バー（横幅いっぱいに綺麗に広げる） */
 .filter-input-large,
 .filter-controls input[type="text"] {
     width: 100% !important;
@@ -336,23 +315,74 @@ body {
     box-sizing: border-box !important;
 }
 
-/* 「元気付与あり」チェックボックス（PCの縦書きバグ・スマホの文字消えを完全防止） */
+/* PC縦書き・スマホ文字消え防止 */
 .filter-controls label,
 .plan-checkboxes {
     display: inline-flex !important;
     align-items: center !important;
     gap: 8px !important;
-    width: auto !important; /* 幅を固定せず自動にしてPC版の縦書きを防ぐ */
-    min-width: max-content !important; /* 文字が絶対に潰れない空間を確保 */
+    width: auto !important;
+    min-width: max-content !important;
     white-space: nowrap !important;
     font-size: 14px !important;
     color: #333333 !important;
     margin-top: 5px !important;
 }
 
-/* チェックボックス自体のサイズ固定 */
 .filter-controls input[type="checkbox"] {
     width: 18px !important;
     height: 18px !important;
     margin: 0 !important;
+}
+
+/* -----------------------------------------
+   2. カードリストエリア（スマホ3列・黒枠見切れ完全修正）
+   ----------------------------------------- */
+/* 画面の横揺れ・はみ出し防止 */
+html, body {
+    overflow-x: hidden !important;
+}
+
+/* スマホ版 (768px以下) のみ強制3列化 */
+@media screen and (max-width: 768px) {
+    #card-pool, #deck-list {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 8px !important; /* カード間の適度な隙間 */
+        width: 100% !important;
+        box-sizing: border-box !important;
+        padding: 5px !important;
+        margin: 0 auto !important;
+    }
+
+    .card-item {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
+        /* 【重要】ここを visible にして黒枠の切り落としを防ぐ */
+        overflow: visible !important; 
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    /* カード画像を枠内に100%収める（黒枠もキッチリ写る） */
+    .card-item img {
+        width: 100% !important;
+        height: auto !important;
+        object-fit: contain !important;
+        display: block !important;
+    }
+
+    /* カード下の文字はみ出し防止 */
+    .card-item p {
+        width: 100% !important;
+        text-align: center !important;
+        font-size: 11px !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        margin: 4px 0 0 0 !important;
+    }
 }

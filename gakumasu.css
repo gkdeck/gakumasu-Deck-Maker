@@ -359,36 +359,26 @@ html, body {
 }
 
 /* スマホ版 (768px以下) のみ強制3列化 */
-@media screen and (max-width: 768px) {
-    #card-pool, #deck-list {
-        display: grid !important;
-        grid-template-columns: repeat(3, 1fr) !important;
-        gap: 8px !important; /* カード間の適度な隙間 */
-        width: 100% !important;
-        box-sizing: border-box !important;
-        padding: 5px !important;
-        margin: 0 auto !important;
-    }
+@media (max-width:768px){
 
-    .card-item {
-        width: 100% !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        box-sizing: border-box !important;
-        /* 【重要】ここを visible にして黒枠の切り落としを防ぐ */
-        overflow: visible !important; 
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-    }
+#card-pool{
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    gap:8px;
+}
 
-    /* カード画像を枠内に100%収める（黒枠もキッチリ写る） */
-    .card-item img {
-        width: 100% !important;
-        height: auto !important;
-        object-fit: contain !important;
-        display: block !important;
-    }
+.card-item{
+    width:100% !important;
+    min-width:0;
+}
+
+.card-item img{
+    width:100%;
+    aspect-ratio:1/1;
+    height:auto;
+    object-fit:cover;
+}
+
+}
 
     /* カード下の文字はみ出し防止 */
     .card-item p {
@@ -400,5 +390,4 @@ html, body {
         text-overflow: ellipsis !important;
         margin: 4px 0 0 0 !important;
     }
-}
 

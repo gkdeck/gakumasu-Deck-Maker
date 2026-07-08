@@ -391,3 +391,22 @@ html, body {
         margin: 4px 0 0 0 !important;
     }
 
+@media (max-width: 768px) {
+
+    #deck-list{
+        grid-template-columns: repeat(3, minmax(0,1fr)) !important;
+        gap:8px !important;
+    }
+
+    #deck-list .card-item{
+        width:100% !important;
+    }
+
+    #deck-list .card-item img{
+        width:100% !important;
+        height:auto !important;
+        aspect-ratio:1/1;
+    }
+
+}
+

@@ -878,25 +878,5 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 });
-
-const navDeck = document.getElementById("nav-deck");
-const navSearch = document.getElementById("nav-search");
-
-navDeck.onclick = () => {
-
-    navDeck.classList.add("active");
-    navSearch.classList.remove("active");
-
-    openHome();      // デッキ一覧へ
-};
-
-navSearch.onclick = () => {
-
-    navSearch.classList.add("active");
-    navDeck.classList.remove("active");
-
-    alert("カード検索画面はこれから作成！");
-};
-
 // 初期起動
 openHome();

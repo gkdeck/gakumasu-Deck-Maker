@@ -61,21 +61,7 @@
         <div></div>
     </header>
 
-<div class="main-container">
-
-    <!-- タブ -->
-    <nav class="editor-nav">
-        <button id="tab-deck" class="active">
-            📋 デッキ編集
-        </button>
-
-        <button id="tab-search">
-            🔍 カード検索
-        </button>
-    </nav>
-
-    <!-- デッキ編集画面 -->
-    <div id="deck-editor-page">
+    <div class="main-container">
 
         <!-- 編成カード -->
         <section class="deck-list-section">
@@ -103,11 +89,6 @@
             <div id="deck-list" class="card-grid"></div>
 
         </section>
-
-    </div>
-
-    <!-- カード検索画面 -->
-    <div id="card-search-page" style="display:none;">
 
         <!-- フィルター -->
         <div id="filter-section" class="filter-section">
@@ -233,6 +214,20 @@
 </footer>
 
 <script src="gakumasu.js"></script>
+
+<nav class="bottom-nav">
+
+    <button id="nav-deck" class="nav-item active">
+        <span>🏠</span>
+        <small>デッキ編集</small>
+    </button>
+
+    <button id="nav-search" class="nav-item">
+        <span>🔍</span>
+        <small>カード検索</small>
+    </button>
+
+</nav>
 
 </body>
 </html>

@@ -410,25 +410,54 @@ html, body {
 
 }
 
-.editor-nav{
+/* ==========================
+   下部ナビ
+========================== */
+
+.bottom-nav{
+    position:fixed;
+    left:0;
+    bottom:0;
+    width:100%;
+    height:70px;
+
     display:flex;
-    gap:12px;
-    margin-bottom:20px;
+
+    background:#ffffff;
+    border-top:1px solid #ddd;
+
+    z-index:9999;
 }
 
-.editor-nav button{
+.nav-item{
     flex:1;
-    height:46px;
+
     border:none;
-    border-radius:12px;
-    background:#ececec;
-    font-size:16px;
-    font-weight:bold;
+    background:none;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
     cursor:pointer;
-    transition:.2s;
+
+    color:#888;
+    font-size:14px;
 }
 
-.editor-nav button.active{
-    background:#ff5d9e;
-    color:white;
+.nav-item span{
+    font-size:24px;
+    margin-bottom:3px;
+}
+
+.nav-item.active{
+    color:#ff4081;
+    font-weight:bold;
+}
+
+/* ナビに隠れないように */
+
+body{
+    padding-bottom:80px;
 }

@@ -879,31 +879,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-const tabDeck = document.getElementById("tab-deck");
-const tabSearch = document.getElementById("tab-search");
+const navDeck = document.getElementById("nav-deck");
+const navSearch = document.getElementById("nav-search");
 
-const deckPage = document.getElementById("deck-editor-page");
-const searchPage = document.getElementById("card-search-page");
+navDeck.onclick = () => {
 
-tabDeck.addEventListener("click", () => {
+    navDeck.classList.add("active");
+    navSearch.classList.remove("active");
 
-    tabDeck.classList.add("active");
-    tabSearch.classList.remove("active");
+    openHome();      // デッキ一覧へ
+};
 
-    deckPage.style.display = "";
-    searchPage.style.display = "none";
+navSearch.onclick = () => {
 
-});
+    navSearch.classList.add("active");
+    navDeck.classList.remove("active");
 
-tabSearch.addEventListener("click", () => {
-
-    tabSearch.classList.add("active");
-    tabDeck.classList.remove("active");
-
-    deckPage.style.display = "none";
-    searchPage.style.display = "";
-
-});
+    alert("カード検索画面はこれから作成！");
+};
 
 // 初期起動
 openHome();

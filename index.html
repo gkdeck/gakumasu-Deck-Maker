@@ -61,7 +61,21 @@
         <div></div>
     </header>
 
-    <div class="main-container">
+<div class="main-container">
+
+    <!-- タブ -->
+    <nav class="editor-nav">
+        <button id="tab-deck" class="active">
+            📋 デッキ編集
+        </button>
+
+        <button id="tab-search">
+            🔍 カード検索
+        </button>
+    </nav>
+
+    <!-- デッキ編集画面 -->
+    <div id="deck-editor-page">
 
         <!-- 編成カード -->
         <section class="deck-list-section">
@@ -89,6 +103,11 @@
             <div id="deck-list" class="card-grid"></div>
 
         </section>
+
+    </div>
+
+    <!-- カード検索画面 -->
+    <div id="card-search-page" style="display:none;">
 
         <!-- フィルター -->
         <div id="filter-section" class="filter-section">

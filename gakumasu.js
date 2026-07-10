@@ -878,5 +878,32 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 });
+
+const tabDeck = document.getElementById("tab-deck");
+const tabSearch = document.getElementById("tab-search");
+
+const deckPage = document.getElementById("deck-editor-page");
+const searchPage = document.getElementById("card-search-page");
+
+tabDeck.addEventListener("click", () => {
+
+    tabDeck.classList.add("active");
+    tabSearch.classList.remove("active");
+
+    deckPage.style.display = "";
+    searchPage.style.display = "none";
+
+});
+
+tabSearch.addEventListener("click", () => {
+
+    tabSearch.classList.add("active");
+    tabDeck.classList.remove("active");
+
+    deckPage.style.display = "none";
+    searchPage.style.display = "";
+
+});
+
 // 初期起動
 openHome();

@@ -46,6 +46,58 @@
 
 </div>
 
+
+<!-- カード検索 -->
+<div id="search-view" style="display:none;">
+
+    <header class="app-header">
+        <div class="header-logo">
+            カード検索
+        </div>
+    </header>
+
+    <main class="main-container">
+
+    <div id="search-filter-section" class="filter-section">
+
+    <div class="filter-controls">
+
+        <input
+            type="text"
+            id="search-card-name"
+            class="filter-input-large"
+            placeholder="カード名で検索..."
+        >
+
+        <label style="display:flex;align-items:center;gap:5px;">
+            <input type="checkbox" id="search-genki">
+            元気付与あり
+        </label>
+
+        <select id="search-type" class="filter-select">
+            <option value="all">すべてのタイプ</option>
+            <option value="1">共通</option>
+            <option value="2">センス</option>
+            <option value="3">ロジック</option>
+            <option value="4">アノマリー</option>
+            <option value="5">アイドル固有</option>
+            <option value="6">サポート固有</option>
+        </select>
+
+    </div>
+
+<div id="search-plan-checkboxes" class="plan-checkboxes"></div>
+
+</div>
+
+<section class="card-pool-section">
+    <div id="search-card-pool" class="card-grid"></div>
+</section>
+
+    </main>
+
+</div>
+
 <!-- エディター -->
 <div id="editor-view" style="display:none;">
 
@@ -213,6 +265,20 @@
 
 </footer>
 
+
+   <nav id="bottom-nav" class="bottom-nav">
+
+    <button class="nav-item active" id="nav-home">
+        <div class="nav-icon">🏠</div>
+        <span>ホーム</span>
+    </button>
+
+    <button class="nav-item" id="nav-search">
+        <div class="nav-icon">🔍</div>
+        <span>カード検索</span>
+    </button>
+
+</nav>
 <script src="gakumasu.js"></script>
 
 </body>

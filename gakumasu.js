@@ -7,8 +7,8 @@ let currentEditingDeckId = null;
 
 const cardData = [
     { id: "1000-001", name: "アピールの基本", type: "共通",img:"IMG_8391.png"}, 
-    { id: "1000-002", name: "ポーズの基本", type: "共通", img:"IMG_8392.png" },
-    { id: "1000-003", name: "表現の基本", type: "共通", img:"IMG_8393.png" },
+    { id: "1010-002", name: "ポーズの基本", type: "共通", img:"IMG_8392.png" },
+    { id: "1010-003", name: "表現の基本", type: "共通", img:"IMG_8393.png" },
     { id: "1000-004", name: "眠気", type: "共通", img:"IMG_8394.png" },
     { id: "1001-005", name: "気合十分！", type: "共通", img:"IMG_8395.png" },
     { id: "1001-006", name: "ファーストステップ", type: "共通", img:"IMG_8396.png" },
@@ -434,11 +434,42 @@ const cardData = [
 const homeView = document.getElementById('home-view');
 const editorView = document.getElementById('editor-view');
 
+// ▼ ここから上書き
+function showView(viewId) {
+    const home = document.getElementById("home-view");
+    const search = document.getElementById("search-view");
+    const editor = document.getElementById("editor-view");
+    const nav = document.getElementById("bottom-nav");
+
+    if (home) home.style.display = "none";
+    if (search) search.style.display = "none";
+    if (editor) editor.style.display = "none";
+
+    const target = document.getElementById(viewId);
+    if (target) target.style.display = "block";
+
+    // エディター画面ではボトムナビを隠す
+    if (nav) {
+        nav.style.display = (viewId === "editor-view") ? "none" : "flex";
+    }
+
+    // ボトムナビゲーションの色（active）を自動で切り替える
+    const navHome = document.getElementById("nav-home");
+    const navSearch = document.getElementById("nav-search");
+    if (navHome && navSearch) {
+        if (viewId === "home-view") {
+            navHome.classList.add("active");
+            navSearch.classList.remove("active");
+        } else if (viewId === "search-view") {
+            navSearch.classList.add("active");
+            navHome.classList.remove("active");
+        }
+    }
+}
+
 // エディターを開く
 function openEditor(deckToLoad = null) {
-    if (homeView) homeView.style.display = 'none';
-    if (editorView) editorView.style.display = 'block';
-    
+    showView("editor-view");
     currentEditingDeckId = deckToLoad ? deckToLoad.id : null;
     currentDeck = deckToLoad ? [...deckToLoad.cards] : [];
     
@@ -448,27 +479,148 @@ function openEditor(deckToLoad = null) {
 
 // ホームを開く
 function openHome() {
-    if (editorView) editorView.style.display = 'none';
-    if (homeView) homeView.style.display = 'block';
+    showView("home-view");
     renderHomeDecks();
 }
 
+// カード検索を開く
+function openSearch() {
+    showView("search-view");
+    updateSearch();
+}
+
+
 // カードプールを描画
-function renderCardPool(cards) {
-    const pool = document.getElementById('card-pool');
+function renderCardPool(cards, targetId = "card-pool") {
+
+    const pool = document.getElementById(targetId);
+
     if (!pool) return;
-    pool.innerHTML = '';
+
+    pool.innerHTML = "";
+
     cards.forEach(card => {
-        const div = document.createElement('div');
-        div.className = 'card-item';
-        div.innerHTML = `<img src="${card.img}" alt="${card.name}"><p>${card.name}</p>`;
+
+        const div = document.createElement("div");
+        div.className = "card-item";
+
+        div.innerHTML = `
+            <img src="${card.img}" alt="${card.name}">
+            <p>${card.name}</p>
+        `;
+
         div.onclick = () => {
             currentDeck.push(card);
             renderCurrentDeck();
         };
+
         pool.appendChild(div);
+
+    });
+
+}
+
+// ▼ ここから上書き
+function updateSearch() {
+    let cards = [...cardData];
+
+    // 入力値の取得
+    const keyword = document.getElementById("search-card-name").value.trim().toLowerCase();
+    const type = document.getElementById("search-type").value;
+    const genki = document.getElementById("search-genki").checked;
+    // チェックされているプラン（集中、好調など）の取得
+    const checkedPlans = Array.from(document.querySelectorAll(".search-plan:checked")).map(e => e.value);
+
+    cards = cards.filter(card => {
+        // 1. キーワード判定
+        if (keyword) {
+            const hitName = card.name.toLowerCase().includes(keyword);
+            let hitIdol = false;
+            if (card.idol) {
+                if (Array.isArray(card.idol)) {
+                    hitIdol = card.idol.some(name => name.toLowerCase().includes(keyword));
+                } else {
+                    hitIdol = card.idol.toLowerCase().includes(keyword);
+                }
+            }
+            if (!hitName && !hitIdol) return false;
+        }
+
+        // 2. タイプ判定
+        if (type !== "all" && card.id[0] !== type) return false;
+
+        // 3. 元気付与判定
+        if (genki && card.id[2] !== "1") return false;
+
+        // 4. プラン（チェックボックス）判定
+        if (checkedPlans.length > 0) {
+            const planCode = card.id[1];
+            let cardAttributes = [];
+            
+            // IDの1桁目がタイプ、2桁目がプランの対応表
+            if (card.id[0] === '2') { // センス
+                if (planCode === '1') cardAttributes.push('1'); // 集中
+                if (planCode === '2') cardAttributes.push('2'); // 好調
+                if (planCode === '3') cardAttributes.push('1', '2'); // 両方
+            } else if (card.id[0] === '3') { // ロジック
+                if (planCode === '1') cardAttributes.push('1'); // 好印象
+                if (planCode === '2') cardAttributes.push('2'); // やる気
+                if (planCode === '3') cardAttributes.push('1', '2'); // 両方
+            } else if (card.id[0] === '4') { // アノマリー
+                if (planCode === '1') cardAttributes.push('1'); // 全力
+                if (planCode === '2') cardAttributes.push('2'); // 強気
+                if (planCode === '3') cardAttributes.push('3'); // 温存
+                if (planCode === '4') cardAttributes.push('4'); // のんびり
+                if (planCode === '5') cardAttributes.push('1', '2'); // 全力+強気
+                if (planCode === '6') cardAttributes.push('1', '3'); // 全力+温存
+                if (planCode === '7') cardAttributes.push('1', '4'); // 全力+のんびり
+                if (planCode === '8') cardAttributes.push('1', '2', '3'); // 全力+強気+温存
+                if (planCode === '9') cardAttributes.push('2', '3'); // 強気+温存
+            }
+
+            // 選ばれたチェックボックスの条件をすべて満たしているか判定
+            const isMatch = checkedPlans.every(plan => cardAttributes.includes(plan));
+            if (!isMatch) return false;
+        }
+
+        return true;
+    });
+
+    renderCardPool(cards, "search-card-pool");
+}
+// ▲ ここまで上書き
+// ▼ ここから上書き
+function updateSearchPlanCheckboxes() {
+    const type = document.getElementById("search-type").value;
+    const area = document.getElementById("search-plan-checkboxes");
+
+    if(!area) return;
+    area.innerHTML = "";
+
+    let plans = [];
+
+    if(type === "2") {
+        plans = [{text:"集中",value:"1"}, {text:"好調",value:"2"}];
+    } else if(type === "3") {
+        plans = [{text:"好印象",value:"1"}, {text:"やる気",value:"2"}];
+    } else if(type === "4") {
+        plans = [
+            {text:"全力",value:"1"}, {text:"強気",value:"2"},
+            {text:"温存",value:"3"}, {text:"のんびり",value:"4"}
+        ];
+    }
+
+    // チェックボックスを描画（押した瞬間に自動で絞り込みを実行する設定を追加）
+    plans.forEach(plan => {
+        area.innerHTML += `
+            <label style="margin-right:15px; cursor:pointer;">
+                <input type="checkbox" class="search-plan" value="${plan.value}" onchange="updateSearch()">
+                ${plan.text}
+            </label>
+        `;
     });
 }
+// ▲ ここまで上書き
 
 // 現在の編成中デッキを描画
 function renderCurrentDeck() {
@@ -648,6 +800,29 @@ if (requireGenki && genkiCode !== '1') return false;
     });
 
     renderCardPool(filtered);
+}
+
+function renderSearchCardPool(cards) {
+
+    const pool = document.getElementById("search-card-pool");
+    if (!pool) return;
+
+    pool.innerHTML = "";
+
+    cards.forEach(card => {
+
+        const div = document.createElement("div");
+        div.className = "card-item";
+
+        div.innerHTML = `
+            <img src="${card.img}" alt="${card.name}">
+            <p>${card.name}</p>
+        `;
+
+        pool.appendChild(div);
+
+    });
+
 }
 
 // デッキ保存処理（新規・上書き共通）
@@ -878,5 +1053,42 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 });
+
 // 初期起動
 openHome();
+
+// ▼ ここから上書き
+/* ==========================
+   Bottom Navigation の動作設定
+========================== */
+const navHomeBtn = document.getElementById("nav-home");
+const navSearchBtn = document.getElementById("nav-search");
+
+// ホームボタンを押した時
+if (navHomeBtn) {
+    navHomeBtn.addEventListener("click", () => {
+        openHome();
+    });
+}
+
+// カード検索ボタンを押した時
+if (navSearchBtn) {
+    navSearchBtn.addEventListener("click", () => {
+        openSearch();
+    });
+}
+
+// 検索画面のイベントリスナー（入力や選択をした瞬間に自動で絞り込む）
+const searchCardName = document.getElementById("search-card-name");
+const searchType = document.getElementById("search-type");
+const searchGenki = document.getElementById("search-genki");
+
+if (searchCardName) searchCardName.addEventListener("input", updateSearch);
+if (searchGenki) searchGenki.addEventListener("change", updateSearch);
+if (searchType) {
+    searchType.addEventListener("change", () => {
+        updateSearchPlanCheckboxes();
+        updateSearch();
+    });
+}
+// ▲ ここまで上書き

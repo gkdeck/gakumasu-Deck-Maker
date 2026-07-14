@@ -159,8 +159,8 @@ body {
     max-height: 290px;
     min-height: 140px; 
     overflow-y: auto;  
-    padding-right: 5px;
-    padding-bottom: 5px; /* 💡 ホバー拡大時にはみ出ないように余白を追加 */
+
+    padding: 15px;
 }
 
 /* （中略：スクロールバー装飾のCSSはそのまま残してください） */
@@ -201,8 +201,7 @@ body {
     max-height:400px;
     overflow-y:auto;
 
-    padding-right:5px;
-    padding-bottom:5px;
+    padding:15px;
 }
 
 /* カードの見た目を学マスカード比率 */

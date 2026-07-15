@@ -6,12 +6,13 @@ let currentDeck = [];
 let currentEditingDeckId = null;
 
 const cardData = [
+
     { id: "1000-001", name: "アピールの基本", type: "共通",img:"IMG_8391.png"}, 
     { id: "1010-002", name: "ポーズの基本", type: "共通", img:"IMG_8392.png" },
     { id: "1010-003", name: "表現の基本", type: "共通", img:"IMG_8393.png" },
     { id: "1000-004", name: "眠気", type: "共通", img:"IMG_8394.png" },
-    { id: "1001-005", name: "気合十分！", type: "共通", img:"IMG_8395.png" },
-    { id: "1001-006", name: "ファーストステップ", type: "共通", img:"IMG_8396.png" },
+    { id: "1011-005", name: "気合十分！", type: "共通", img:"IMG_8395.png" },
+    { id: "1011-006", name: "ファーストステップ", type: "共通", img:"IMG_8396.png" },
     { id: "1012-007", name: "前途洋々", type: "共通", img:"IMG_8397.png" },
     { id: "1002-008", name: "アイドル宣言", type: "共通", img:"IMG_8398.png" },
     { id: "1012-009", name: "ハイテンション", type: "共通", img:"IMG_8399.png" },
@@ -51,7 +52,7 @@ const cardData = [
     { id: "2102-030", name: "情熱ターン", type: "センス", img:"IMG_8453.png" },
     { id: "2102-031", name: "飛躍", type: "センス", img:"IMG_8454.png" },
     { id: "2202-032", name: "祝福", type: "センス", img:"IMG_8455.png" }, 
-    { id: "2002-033", name: "スタートダッシュ", type: "センス", img:"IMG_8456.png"},
+    { id: "2012-033", name: "スタートダッシュ", type: "センス", img:"IMG_8456.png"},
     { id: "2112-034", name: "スタンドプレー", type: "センス", img:"IMG_8457.png" },
     { id: "2202-035", name: "シュプレヒコール", type: "センス", img:"IMG_8458.png" },
     { id: "2212-036", name: "立ち位置チェック", type: "センス", img:"IMG_8459.png" },
@@ -93,7 +94,7 @@ const cardData = [
     { id: "3210-003", name: "仕草の基本", type: "ロジック", img:"IMG_8495.png" },
     { id: "3100-004", name: "可愛い仕草", type: "ロジック", img:"IMG_8496.png" },
     { id: "3200-005", name: "気分転換", type: "ロジック", img:"IMG_8497.png" },
-    { id: "3100-006", name: "笑顔の基本", type: "ロジック", img:"IMG_8498.png" },
+    { id: "3110-006", name: "笑顔の基本", type: "ロジック", img:"IMG_8498.png" },
     { id: "3100-007", name: "盛り上げの基本", type: "ロジック", img:"IMG_8499.png" },
     { id: "3310-008", name: "セリフの基本", type: "ロジック", img:"IMG_8500.png" },
     { id: "3210-009", name: "距離感の基本", type: "ロジック", img:"IMG_8501.png" },
@@ -143,7 +144,7 @@ const cardData = [
     { id: "3103-053", name: "輝くキミへ", type: "ロジック", img:"IMG_8545.png" },
     { id: "3213-054", name: "あのときの約束", type: "ロジック", img:"IMG_8546.png" },
     { id: "3103-055", name: "キセキの魔法", type: "ロジック", img:"IMG_8547.png" },
-    { id: "3203-056", name: "せのびの魔法", type: "ロジック", img:"IMG_8548.png" },
+    { id: "3213-056", name: "せのびの魔法", type: "ロジック", img:"IMG_8548.png" },
     { id: "3103-057", name: "びしっとキメ顔", type: "ロジック", img:"IMG_8981.png" },
     { id: "3003-058", name: "私がスター", type: "ロジック", img:"IMG_8549.png" },
     { id: "3103-059", name: "星屑センセーション", type: "ロジック", img:"IMG_8550.png" },
@@ -156,7 +157,7 @@ const cardData = [
     { id: "3204-066", name: "輝きの到達点", type: "ロジック", img:"IMG_8557.png" },
     { id: "3004-067", name: "エクセレント♪", type: "ロジック", img:"IMG_8558.png" },
     { id: "3104-068", name: "究極スマイル", type: "ロジック", img:"IMG_8559.png" },
-    { id: "3204-069", name: "最強パフォーマー", type: "ロジック", img:"IMG_8560.png" },
+    { id: "3214-069", name: "最強パフォーマー", type: "ロジック", img:"IMG_8560.png" },
     { id: "4200-001", name: "ブランディングの基本", type: "アノマリー", img:"IMG_8569.png" },
     { id: "4200-002", name: "魅せ方の基本", type: "アノマリー", img:"IMG_8570.png" },
     { id: "4100-003", name: "アドリブの基本", type: "アノマリー", img:"IMG_8571.png" },
@@ -202,7 +203,7 @@ const cardData = [
     { id: "4312-043", name: "プライド", type: "アノマリー", img:"IMG_8611.png" },
     { id: "4002-044", name: "盛り上げ上手", type: "アノマリー", img:"IMG_8612.png" },
     { id: "4002-045", name: "インフルエンサー", type: "アノマリー", img:"IMG_8613.png" },
-    { id: "4302-046", name: "忍耐力", type: "アノマリー", img:"IMG_8614.png" },
+    { id: "4312-046", name: "忍耐力", type: "アノマリー", img:"IMG_8614.png" },
     { id: "4302-047", name: "切磋琢磨", type: "アノマリー", img:"IMG_8615.png" },
     { id: "4802-048", name: "フルスロットル", type: "アノマリー", img:"IMG_8616.png" },
     { id: "4102-049", name: "リスキーチャンス", type: "アノマリー", img:"IMG_8617.png" },
@@ -226,7 +227,7 @@ const cardData = [
     { id: "4604-067", name: "エキスパート", type: "アノマリー", img:"IMG_8635.png" },
     { id: "4804-068", name: "レジェンドスター", type: "アノマリー", img:"IMG_8636.png" },
     { id: "4904-069", name: "トップクオリティ", type: "アノマリー", img:"IMG_8637.png" },
-      { id: "5201-001", name: "新進気鋭", idol: ["咲季", "花海咲季", "はなみさき"], type: "センス", img: "咲季_se001.png" },
+    { id: "5201-001", name: "新進気鋭", idol: ["咲季", "花海咲季", "はなみさき"], type: "センス", img: "咲季_se001.png" },
     { id: "5202-002", name: "一番は譲らない", idol: ["咲季", "花海咲季", "はなみさき"], type: "センス", img: "咲季_se002.png" },
     { id: "5203-003", name: "絶対負けない", idol: ["咲季", "花海咲季", "はなみさき"], type: "センス", img: "咲季_se003.png" },
     { id: "5203-004", name: "ちょちょいのちょい", idol: ["咲季", "花海咲季", "はなみさき"], type: "センス", img: "咲季_se004.png" },
@@ -366,7 +367,7 @@ const cardData = [
     { id: "5203-134", name: "踊り狂え！", idol: ["星南", "十王星南", "じゅうおうせな"], type: "アノマリー", img: "星南_an005.png" },
     { id: "5301-135", name: "のんびり屋さん", idol: ["美鈴", "秦谷美鈴", "はたやみすず"], type: "アノマリー", img: "美鈴_an001.png" },
     { id: "5302-136", name: "休み休み、前へ", idol: ["美鈴", "秦谷美鈴", "はたやみすず"], type: "アノマリー", img: "美鈴_an002.png" },
-    { id: "5303-137", name: "屋上からの景色", idol: ["美鈴", "秦谷美鈴", "はたやみすず"], type: "アノマリー", img: "美鈴_an003.png" },
+    { id: "5403-137", name: "屋上からの景色", idol: ["美鈴", "秦谷美鈴", "はたやみすず"], type: "アノマリー", img: "美鈴_an003.png" },
     { id: "5203-138", name: "教えてあげる", idol: ["美鈴", "秦谷美鈴", "はたやみすず"], type: "アノマリー", img: "美鈴_an004.png" },
     { id: "5103-139", name: "新たなステージ", idol: ["佑芽", "花海佑芽", "はなみうめ"], type: "アノマリー", img: "佑芽_an001.png" },
     { id: "5203-140", name: "グーチョキパーデポン", idol: ["佑芽", "花海佑芽", "はなみうめ"], type: "アノマリー", img: "佑芽_an002.png" },
@@ -421,7 +422,7 @@ const cardData = [
     { id: "6102-046", name: "愛情レインボー", type: "アノマリー", img:"spc_an001.png"},
     { id: "6602-047", name: "小さなお客さん", type: "アノマリー", img:"spc_an002.png"},
     { id: "6603-048", name: "雨宿りのバス停", type: "アノマリー", img:"spc_an003.png"},
-    { id: "6413-049", name: "バレンタイン大作戦！", type: "アノマリー", img:"spc_an004.png"},
+    { id: "6313-049", name: "バレンタイン大作戦！", type: "アノマリー", img:"spc_an004.png"},
     { id: "6103-050", name: "対戦お願いします！", type: "アノマリー", img:"spc_an005.png"},
     { id: "6303-051", name: "いたずらサンタさん", type: "アノマリー", img:"spc_an006.png"},
     { id: "6113-052", name: "寒空リサイタル", type: "アノマリー", img:"spc_an007.png"},
@@ -521,105 +522,133 @@ function renderCardPool(cards, targetId = "card-pool") {
 }
 
 // ▼ ここから上書き
-function updateSearch() {
-    let cards = [...cardData];
-
-    // 入力値の取得
-    const keyword = document.getElementById("search-card-name").value.trim().toLowerCase();
-    const type = document.getElementById("search-type").value;
-    const genki = document.getElementById("search-genki").checked;
-    // チェックされているプラン（集中、好調など）の取得
-    const checkedPlans = Array.from(document.querySelectorAll(".search-plan:checked")).map(e => e.value);
-
-    cards = cards.filter(card => {
-        // 1. キーワード判定
-        if (keyword) {
-            const hitName = card.name.toLowerCase().includes(keyword);
-            let hitIdol = false;
-            if (card.idol) {
-                if (Array.isArray(card.idol)) {
-                    hitIdol = card.idol.some(name => name.toLowerCase().includes(keyword));
-                } else {
-                    hitIdol = card.idol.toLowerCase().includes(keyword);
-                }
-            }
-            if (!hitName && !hitIdol) return false;
-        }
-
-        // 2. タイプ判定
-        if (type !== "all" && card.id[0] !== type) return false;
-
-        // 3. 元気付与判定
-        if (genki && card.id[2] !== "1") return false;
-
-        // 4. プラン（チェックボックス）判定
-        if (checkedPlans.length > 0) {
-            const planCode = card.id[1];
-            let cardAttributes = [];
-            
-            // IDの1桁目がタイプ、2桁目がプランの対応表
-            if (card.id[0] === '2') { // センス
-                if (planCode === '1') cardAttributes.push('1'); // 集中
-                if (planCode === '2') cardAttributes.push('2'); // 好調
-                if (planCode === '3') cardAttributes.push('1', '2'); // 両方
-            } else if (card.id[0] === '3') { // ロジック
-                if (planCode === '1') cardAttributes.push('1'); // 好印象
-                if (planCode === '2') cardAttributes.push('2'); // やる気
-                if (planCode === '3') cardAttributes.push('1', '2'); // 両方
-            } else if (card.id[0] === '4') { // アノマリー
-                if (planCode === '1') cardAttributes.push('1'); // 全力
-                if (planCode === '2') cardAttributes.push('2'); // 強気
-                if (planCode === '3') cardAttributes.push('3'); // 温存
-                if (planCode === '4') cardAttributes.push('4'); // のんびり
-                if (planCode === '5') cardAttributes.push('1', '2'); // 全力+強気
-                if (planCode === '6') cardAttributes.push('1', '3'); // 全力+温存
-                if (planCode === '7') cardAttributes.push('1', '4'); // 全力+のんびり
-                if (planCode === '8') cardAttributes.push('1', '2', '3'); // 全力+強気+温存
-                if (planCode === '9') cardAttributes.push('2', '3'); // 強気+温存
-            }
-
-            // 選ばれたチェックボックスの条件をすべて満たしているか判定
-            const isMatch = checkedPlans.every(plan => cardAttributes.includes(plan));
-            if (!isMatch) return false;
-        }
-
-        return true;
-    });
-
-    renderCardPool(cards, "search-card-pool");
-}
-// ▲ ここまで上書き
-// ▼ ここから上書き
+// ==========================================
+// カード検索画面のプランチェックボックス生成（エディター版の高機能ロジック流用）
+// ==========================================
 function updateSearchPlanCheckboxes() {
-    const type = document.getElementById("search-type").value;
-    const area = document.getElementById("search-plan-checkboxes");
+    const typeEl = document.getElementById('search-type');
+    const container = document.getElementById('search-plan-checkboxes');
+    if (!typeEl || !container) return;
 
-    if(!area) return;
-    area.innerHTML = "";
+    const typeVal = typeEl.value;
+    container.innerHTML = ''; // クリア
 
     let plans = [];
-
-    if(type === "2") {
-        plans = [{text:"集中",value:"1"}, {text:"好調",value:"2"}];
-    } else if(type === "3") {
-        plans = [{text:"好印象",value:"1"}, {text:"やる気",value:"2"}];
-    } else if(type === "4") {
+    if (typeVal === '2') { // センス
+        plans = [{ label: '集中', value: 'focus' }, { label: '好調', value: 'positive' }];
+    } else if (typeVal === '3') { // ロジック
+        plans = [{ label: '好印象', value: 'impression' }, { label: 'やる気', value: 'motivation' }];
+    } else if (typeVal === '4') { // アノマリー
         plans = [
-            {text:"全力",value:"1"}, {text:"強気",value:"2"},
-            {text:"温存",value:"3"}, {text:"のんびり",value:"4"}
+            { label: '全力', value: 'full' }, { label: '強気', value: 'agg' },
+            { label: '温存', value: 'pres' }, { label: 'のんびり', value: 'relax' }
         ];
     }
 
-    // チェックボックスを描画（押した瞬間に自動で絞り込みを実行する設定を追加）
     plans.forEach(plan => {
-        area.innerHTML += `
-            <label style="margin-right:15px; cursor:pointer;">
-                <input type="checkbox" class="search-plan" value="${plan.value}" onchange="updateSearch()">
-                ${plan.text}
-            </label>
-        `;
+        const label = document.createElement('label');
+        label.style.marginRight = '15px';
+        label.style.cursor = 'pointer';
+        
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.className = 'search-plan-checkbox'; // 検索画面用のクラス名
+        checkbox.value = plan.value;
+        checkbox.onchange = updateSearch; // チェック時に自動検索
+
+        label.appendChild(checkbox);
+        label.appendChild(document.createTextNode(' ' + plan.label));
+        container.appendChild(label);
     });
 }
+
+// ==========================================
+// カード検索画面の絞り込み処理（エディター版の高機能ロジック流用）
+// ==========================================
+function updateSearch() {
+    const searchEl = document.getElementById('search-card-name');
+    const typeEl = document.getElementById('search-type');
+    const genkiEl = document.getElementById('search-genki');
+    
+    const searchTxt = searchEl ? searchEl.value.trim().toLowerCase() : '';
+    const typeVal = typeEl ? typeEl.value : 'all'; 
+    const requireGenki = genkiEl ? genkiEl.checked : false;
+    
+    const checkedBoxes = document.querySelectorAll('.search-plan-checkbox:checked');
+    const checkedPlans = Array.from(checkedBoxes).map(cb => cb.value);
+
+    // --- 絞り込み処理 ---
+    const filtered = cardData.filter(card => {
+        const idPrefix = card.id.split('-')[0];
+        const typeCode = idPrefix.charAt(0);
+        const planCode = idPrefix.charAt(1);
+        const genkiCode = idPrefix.charAt(2);
+
+        const categoryMap = {
+            '1': '共通', '2': 'センス', '3': 'ロジック',
+            '4': 'アノマリー', '5': 'アイドル固有', '6': 'サポカ固有'
+        };
+        const cardCategory = categoryMap[typeCode] || '共通';
+        const cardEffectiveType = card.type || cardCategory;
+
+        // 1. 名前・アイドル名検索
+        const hitName = card.name.toLowerCase().includes(searchTxt);
+        let hitIdol = false;
+        if (card.idol) {
+            if (Array.isArray(card.idol)) {
+                hitIdol = card.idol.some(name => name.toLowerCase().includes(searchTxt));
+            } else {
+                hitIdol = card.idol.toLowerCase().includes(searchTxt);
+            }
+        }
+        if (searchTxt && !hitName && !hitIdol) return false;
+
+        // 2. タイプ判定（固有カードも正しく判定）
+        if (typeVal !== 'all') {
+            const typeValMap = categoryMap[typeVal] || typeVal;
+            if (typeValMap !== cardCategory && typeValMap !== cardEffectiveType) return false;
+        }
+
+        // 3. 元気付与判定
+        if (requireGenki && genkiCode !== '1') return false;
+
+        // 4. プラン判定
+        if (checkedPlans.length > 0) {
+            let cardAttributes = [];
+            cardAttributes.push(cardCategory);
+            
+            if (cardEffectiveType === 'センス') {
+                if (planCode === '1') cardAttributes.push('focus');
+                if (planCode === '2') cardAttributes.push('positive');
+                if (planCode === '3') cardAttributes.push('focus', 'positive');
+            } else if (cardEffectiveType === 'ロジック') {
+                if (planCode === '1') cardAttributes.push('impression');
+                if (planCode === '2') cardAttributes.push('motivation');
+                if (planCode === '3') cardAttributes.push('impression', 'motivation');
+            } else if (cardEffectiveType === 'アノマリー') {
+                if (planCode === '1') cardAttributes.push('full');
+                if (planCode === '2') cardAttributes.push('agg');
+                if (planCode === '3') cardAttributes.push('pres');
+                if (planCode === '4') cardAttributes.push('relax');
+                if (planCode === '5') cardAttributes.push('full', 'agg');
+                if (planCode === '6') cardAttributes.push('full', 'pres');
+                if (planCode === '7') cardAttributes.push('full', 'relax');
+                if (planCode === '8') cardAttributes.push('full', 'agg', 'pres');
+                if (planCode === '9') cardAttributes.push('agg', 'pres');
+            }
+
+            const isMatch = checkedPlans.every(plan => cardAttributes.includes(plan));
+            if (!isMatch) return false;
+        }
+        
+        return true; 
+    });
+
+    // 検索画面用のプールに描画
+    renderCardPool(filtered, "search-card-pool");
+}
+
+
 // ▲ ここまで上書き
 
 // 現在の編成中デッキを描画
